@@ -73,16 +73,16 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	}
 	return (p);
 }
+
+
 /**
- * get_operation_code - selects the correct opcode to perform
+ * get_opcodes - selects the correct opcode to perform
  *
- * @operation_code: operation code passed
- * @line_num: number of lines
+ * @opc: opcode passed
  *
  * Return: pointer to the function that executes the opcode
  */
-void (*get_operation_code(char *operation_code))(stack_t **stack,
-		unsigned int line_num)
+void (*get_opcodes(char *opc))(stack_t **stack, unsigned int line_number)
 {
 	instruction_t instruct[] = {
 		{"push", _push_fun},
@@ -106,11 +106,11 @@ void (*get_operation_code(char *operation_code))(stack_t **stack,
 	};
 	int i;
 
-	for (i = 0; instruct[i].operation_code; i++)
+	for (i = 0; instruct[i].opcode; i++)
 	{
-		if (_strcmp(instruct[i].operation_code, operation_code) == 0)
+		if (_strcmp(instruct[i].opcode, opc) == 0)
 			break;
 	}
 
-	return (instruct[i].func);
+	return (instruct[i].f);
 }
