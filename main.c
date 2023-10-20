@@ -1,5 +1,6 @@
 #include "monty.h"
 
+
 /**
  * free_global_var -free glo_v
  *
@@ -7,9 +8,9 @@
  */
 void free_global_var(void)
 {
-	free_double_list(glo_v.head);
-	free(glo_v.input);
-	fclose(glo_v.file_des);
+	free_double_list(global_var.head);
+	free(global_var.input);
+	fclose(global_var.file_des);
 }
 
 /**
@@ -20,12 +21,12 @@ void free_global_var(void)
  */
 void start_global_var(FILE *file_des)
 {
-	glo_v.lifo = 1;
-	glo_v.cline = 1;
-	glo_v.args = NULL;
-	glo_v.head = NULL;
-	glo_v.file_des = file_des;
-	glo_v.input = NULL;
+	global_var.lifo = 1;
+	global_var.cline = 1;
+	global_var.args = NULL;
+	global_var.head = NULL;
+	global_var.file_des = file_des;
+	global_var.input = NULL;
 }
 
 /**
@@ -42,7 +43,7 @@ FILE *check_input(int argc, char *argv[])
 
 	if (argc == 1 || argc > 2)
 	{
-		dprintf(2, "USAGE: monty file\n");
+		printf("USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -50,7 +51,7 @@ FILE *check_input(int argc, char *argv[])
 
 	if (fd == NULL)
 	{
-		dprintf(2, "Error: Can't open file %s\n", argv[1]);
+		printf("Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
@@ -74,25 +75,25 @@ int main(int argc, char *argv[])
 
 	fd = check_input(argc, argv);
 	start_global_var(fd);
-	nlines = getline(&glo_v.input, &size, fd);
+	nlines = get_line(&global_var.input, &size, fd);
 	while (nlines != -1)
 	{
-		lines[0] = _strtok(glo_v.input, " \t\n");
+		lines[0] = _strtok(global_var.input, " \t\n");
 		if (lines[0] && lines[0][0] != '#')
 		{
 			f = get_opcodes(lines[0]);
 			if (!f)
 			{
-				dprintf(2, "L%u: ", glo_v.cline);
-				dprintf(2, "unknown instruction %s\n", lines[0]);
+				printf("L%d: ", global_var.cline);
+				printf("unknown instruction %s\n", lines[0]);
 				free_global_var();
 				exit(EXIT_FAILURE);
 			}
-			glo_v.args = _strtok(NULL, " \t\n");
-			f(&glo_v.head, glo_v.cline);
+			global_var.args = _strtok(NULL, " \t\n");
+			f(&global_var.head, global_var.cline);
 		}
-		nlines = getline(&glo_v.input, &size, fd);
-		glo_v.cline++;
+		nlines = get_line(&global_var.input, &size, fd);
+		global_var.cline++;
 	}
 
 	free_global_var();

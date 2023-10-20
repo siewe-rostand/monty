@@ -19,14 +19,14 @@ void _div_fun(stack_t **stack, unsigned int line_num)
 
 	if (q < 2)
 	{
-		dprintf(2, "L%u: can't div, stack too short\n", line_num);
+		printf("L%u: can't div, stack too short\n", line_num);
 		free_global_var();
 		exit(EXIT_FAILURE);
 	}
 
 	if ((*stack)->n == 0)
 	{
-		dprintf(2, "L%u: division by zero\n", line_num);
+		printf("L%u: division by zero\n", line_num);
 		free_global_var();
 		exit(EXIT_FAILURE);
 	}
@@ -56,7 +56,7 @@ void _add_fun(stack_t **stack, unsigned int line_num)
 
 	if (q < 2)
 	{
-		dprintf(2, "L%u: can't add, stack too short\n", line_num);
+		printf("L%u: can't add, stack too short\n", line_num);
 		free_global_var();
 		exit(EXIT_FAILURE);
 	}
@@ -85,7 +85,7 @@ void _sub_fun(stack_t **stack, unsigned int line_num)
 
 	if (m < 2)
 	{
-		dprintf(2, "L%u: can't sub, stack too short\n", line_num);
+		printf("L%u: can't sub, stack too short\n", line_num);
 		free_global_var();
 		exit(EXIT_FAILURE);
 	}
@@ -114,7 +114,7 @@ void _mul_fun(stack_t **stack, unsigned int line_num)
 
 	if (m < 2)
 	{
-		dprintf(2, "L%u: can't mul, stack too short\n", line_num);
+		printf("L%u: can't mul, stack too short\n", line_num);
 		free_global_var();
 		exit(EXIT_FAILURE);
 	}
@@ -144,14 +144,14 @@ void _mod_fun(stack_t **stack, unsigned int line_num)
 
 	if (m < 2)
 	{
-		dprintf(2, "L%u: can't mod, stack too short\n", line_num);
+		printf("L%d: can't mod, stack too short\n", line_num);
 		free_global_var();
 		exit(EXIT_FAILURE);
 	}
 
 	if ((*stack)->n == 0)
 	{
-		dprintf(2, "L%u: division by zero\n", line_num);
+		printf("L%d: division by zero\n", line_num);
 		free_global_var();
 		exit(EXIT_FAILURE);
 	}

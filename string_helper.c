@@ -11,13 +11,13 @@ void print_char(stack_t **stack, unsigned int line_num)
 {
 	if (stack == NULL || *stack == NULL)
 	{
-		dprintf(2, "L%u: can't pchar, stack empty\n", line_num);
+		printf("L%u: can't pchar, stack empty\n", line_num);
 		free_global_var();
 		exit(EXIT_FAILURE);
 	}
 	if ((*stack)->n < 0 || (*stack)->n >= 128)
 	{
-		dprintf(2, "L%u: can't pchar, value out of range\n", line_num);
+		printf("L%u: can't pchar, value out of range\n", line_num);
 		free_global_var();
 		exit(EXIT_FAILURE);
 	}
@@ -81,8 +81,8 @@ void _print_int(stack_t **stack, unsigned int line_num)
 
 	if (*stack == NULL)
 	{
-		dprintf(2, "L%u: ", line_num);
-		dprintf(2, "can't pint, stack empty\n");
+		printf("L%u: ", line_num);
+		printf("can't pint, stack empty\n");
 		free_global_var();
 		exit(EXIT_FAILURE);
 	}

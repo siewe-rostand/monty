@@ -1,8 +1,6 @@
 #ifndef MONTY
 #define MONTY
 
-#define _POSIX_C_SOURCE 200809L
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -11,6 +9,7 @@
 #include <fcntl.h>
 #include <ctype.h>
 
+#define BUFSIZE 1024
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -64,7 +63,7 @@ typedef struct instruction_s
 } instruction_t;
 
 extern global_t global_var;
-global_t glo_v;
+global_t global_var;
 
 void _push_fun(stack_t **stack, unsigned int line_num);
 void _print_all(stack_t **stack, unsigned int line_num);
@@ -99,5 +98,8 @@ stack_t *add_node(stack_t **start, const int store_data);
 void free_double_list(stack_t *stack);
 
 void free_global_var(void);
+void bring_line(char **lineptr, size_t *n, char *buffer, size_t j);
+ssize_t get_line(char **lineptr, size_t *n, FILE *stream);
+char *_strcpy(char *dest, char *src);
 
 #endif

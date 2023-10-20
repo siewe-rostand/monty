@@ -114,3 +114,5 @@ void (*get_opcodes(char *opc))(stack_t **stack, unsigned int line_number)
 
 	return (instruct[i].f);
 }
+
+

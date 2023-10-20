@@ -13,18 +13,18 @@ void _push_fun(stack_t **stack, unsigned int line_num)
 
 	if (!global_var.args)
 	{
-		dprintf(2, "L%u: ", line_num);
-		dprintf(2, "usage: push integer\n");
+		printf("L%u: ", line_num);
+		printf("usage: push integer\n");
 		free_global_var();
 		exit(EXIT_FAILURE);
 	}
 
 	for (j = 0; global_var.args[j] != '\0'; j++)
 	{
-		if (!_isdigit(glo_v.args[j]) && glo_v.args[j] != '-')
+		if (!_isdigit(global_var.args[j]) && global_var.args[j] != '-')
 		{
-			dprintf(2, "L%u: ", line_num);
-			dprintf(2, "usage: push integer\n");
+			printf("L%u: ", line_num);
+			printf("usage: push integer\n");
 			free_global_var();
 			exit(EXIT_FAILURE);
 		}
@@ -78,7 +78,7 @@ stack_t *add_end(stack_t **start, const int store_data)
 	temp = malloc(sizeof(stack_t));
 	if (!temp)
 	{
-		dprintf(2, "Error: malloc failed\n");
+		printf("Error: malloc failed\n");
 		free_global_var();
 		exit(EXIT_FAILURE);
 	}
@@ -117,12 +117,12 @@ stack_t *add_node(stack_t **start, const int store_data)
 	temp = malloc(sizeof(stack_t));
 	if (!temp)
 	{
-		dprintf(2, "Error: malloc failed\n");
+		printf("Error: malloc failed\n");
 		free_global_var();
 		exit(EXIT_FAILURE);
 	}
 	temp->n = store_data;
-	/*Careful with the first time*/
+	
 	if (*start == NULL)
 	{
 		temp->next = *start;

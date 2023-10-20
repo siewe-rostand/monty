@@ -83,7 +83,7 @@ void _swap_fun(stack_t **stack, unsigned int line_num)
 
 	if (m < 2)
 	{
-		dprintf(2, "L%u: can't swap, stack too short\n", line_num);
+		printf("L%d: can't swap, stack too short\n", line_num);
 		free_global_var();
 		exit(EXIT_FAILURE);
 	}
