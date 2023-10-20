@@ -12,7 +12,7 @@ void _queue_format(stack_t **stack, unsigned int line_num)
 	(void)stack;
 	(void)line_num;
 
-	vglo.lifo = 0;
+	global_var.lifo = 0;
 }
 
 /**
@@ -27,7 +27,7 @@ void _stack_format(stack_t **stack, unsigned int line_num)
 	(void)stack;
 	(void)line_num;
 
-	vglo.lifo = 1;
+	global_var.lifo = 1;
 }
 
 

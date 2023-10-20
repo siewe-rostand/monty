@@ -1,6 +1,8 @@
 #ifndef MONTY
 #define MONTY
 
+#define _POSIX_C_SOURCE 200809L
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -9,7 +11,6 @@
 #include <fcntl.h>
 #include <ctype.h>
 
-global_t glo_v;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -18,7 +19,7 @@ global_t glo_v;
  * @next: points to the next element of the stack (or queue)
  *
  * Description: doubly linked list node structure
- * for stack, queues, LIFO, FIFO Holberton project
+ * for stack, queues, LIFO, FIFO
  */
 typedef struct stack_s
 {
@@ -37,7 +38,7 @@ typedef struct stack_s
  * @input: input
  *
  */
-typedef struct globals_v
+typedef struct globals
 {
 	int lifo;
 	unsigned int cline;
@@ -53,6 +54,8 @@ typedef struct globals_v
  * @opcode: the opcode
  * @f: function to handle the opcode
  *
+ * Description: opcode and its function
+ * for stack, queues, LIFO, FIFO
  */
 typedef struct instruction_s
 {
@@ -61,6 +64,7 @@ typedef struct instruction_s
 } instruction_t;
 
 extern global_t global_var;
+global_t glo_v;
 
 void _push_fun(stack_t **stack, unsigned int line_num);
 void _print_all(stack_t **stack, unsigned int line_num);
@@ -80,8 +84,7 @@ void print_str(stack_t **stack, unsigned int line_num);
 void _rotate(stack_t **stack, unsigned int line_num);
 void _reverse(stack_t **stack, unsigned int line_num);
 
-void (*get_operation_code(char *opc))(stack_t **stack,
-		unsigned int line_num);
+void (*get_opcodes(char *opc))(stack_t **stack, unsigned int line_number);
 
 int _search_char(char *s, char c);
 char *_strtok(char *s, char *d);
@@ -93,7 +96,7 @@ int _isdigit(int c);
 
 stack_t *add_end(stack_t **start, const int store_data);
 stack_t *add_node(stack_t **start, const int store_data);
-void free_dlistint(stack_t *head);
+void free_double_list(stack_t *stack);
 
 void free_global_var(void);
 

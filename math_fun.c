@@ -14,13 +14,13 @@ void _div_fun(stack_t **stack, unsigned int line_num)
 
 	tmp = *stack;
 
-	for (; tmp != NULL; tmp = tmp->next, m++)
+	for (; tmp != NULL; tmp = tmp->next, q++)
 		;
 
 	if (q < 2)
 	{
 		dprintf(2, "L%u: can't div, stack too short\n", line_num);
-		free_vglo();
+		free_global_var();
 		exit(EXIT_FAILURE);
 	}
 

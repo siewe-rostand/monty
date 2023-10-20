@@ -7,7 +7,7 @@
  */
 void free_global_var(void)
 {
-	free_dlistint(glo_v.head);
+	free_double_list(glo_v.head);
 	free(glo_v.input);
 	fclose(glo_v.file_des);
 }
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 	nlines = getline(&glo_v.input, &size, fd);
 	while (nlines != -1)
 	{
-		lines[0] = _strtoky(glo_v.input, " \t\n");
+		lines[0] = _strtok(glo_v.input, " \t\n");
 		if (lines[0] && lines[0][0] != '#')
 		{
 			f = get_opcodes(lines[0]);
@@ -85,17 +85,17 @@ int main(int argc, char *argv[])
 			{
 				dprintf(2, "L%u: ", glo_v.cline);
 				dprintf(2, "unknown instruction %s\n", lines[0]);
-				free_vglo();
+				free_global_var();
 				exit(EXIT_FAILURE);
 			}
-			glo_v.args = _strtoky(NULL, " \t\n");
+			glo_v.args = _strtok(NULL, " \t\n");
 			f(&glo_v.head, glo_v.cline);
 		}
 		nlines = getline(&glo_v.input, &size, fd);
 		glo_v.cline++;
 	}
 
-	free_vglo();
+	free_global_var();
 
 	return (0);
 }

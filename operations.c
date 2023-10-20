@@ -21,7 +21,7 @@ void _push_fun(stack_t **stack, unsigned int line_num)
 
 	for (j = 0; global_var.args[j] != '\0'; j++)
 	{
-		if (!_isdigit(glo_v.arg[j]) && glo_v.args[j] != '-')
+		if (!_isdigit(glo_v.args[j]) && glo_v.args[j] != '-')
 		{
 			dprintf(2, "L%u: ", line_num);
 			dprintf(2, "usage: push integer\n");
@@ -52,7 +52,7 @@ void _pop_fun(stack_t **stack, unsigned int line_num)
 	if (stack == NULL || *stack == NULL)
 	{
 		printf("L%d: can't pop an empty stack\n", line_num);
-		free_vglo();
+		free_global_var();
 		exit(EXIT_FAILURE);
 	}
 	tmp = *stack;
@@ -135,4 +135,21 @@ stack_t *add_node(stack_t **start, const int store_data)
 	temp->prev = NULL;
 	*start = temp;
 	return (*start);
+}
+
+/**
+ * free_double_list - frees the doubly linked list
+ *
+ * @stack: stack head
+ * Return: no return
+ */
+void free_double_list(stack_t *stack)
+{
+	stack_t *tmp;
+
+	while ((tmp = stack) != NULL)
+	{
+		stack = stack->next;
+		free(tmp);
+	}
 }
